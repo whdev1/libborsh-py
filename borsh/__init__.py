@@ -324,7 +324,7 @@ def _deserialize_single(key: object, _schema: schema, _type: object, data: bytes
     # check for a schema
     elif isinstance(_type, types.struct):
         # get the corresponding struct definition as a schema
-        struct_schema = schema(_schema[key].struct_dict)
+        struct_schema = schema(_type.struct_dict)
 
         # loop through all of the keys in the struct
         struct_data = {}
@@ -504,7 +504,7 @@ def _serialize_single(key, _type, _schema, data: object) -> bytes:
     elif isinstance(_type, types.struct):
         # get a reference to the struct and its schema
         struct_obj = data[key]
-        struct_schema = schema(_schema[key].struct_dict)
+        struct_schema = schema(_type.struct_dict)
 
         # loop over all of the keys in the struct
         for key in struct_obj.struct_dict.keys():
